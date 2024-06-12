@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #a2d4f1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="file"], input[type="url"] {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+            width: calc(100% - 18px);
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .add-more {
+            display: none;
+            animation: blinker 1s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Profile Information</h1>
+    <form id="profileForm" enctype="multipart/form-data" action="/submit" method="POST">
+        <label for="resume">Resume:</label>
+        <input type="file" id="resume" name="resume">
+        
+        <label for="profilePicture">Profile Picture:</label>
+        <input type="file" id="profilePicture" name="profilePicture">
+        
+        <label for="class10Marksheet">Class 10 Marksheet:</label>
+        <input type="file" id="class10Marksheet" name="class10Marksheet">
+        
+        <label for="class12Marksheet">Class 12 Marksheet:</label>
+        <input type="file" id="class12Marksheet" name="class12Marksheet">
+        
+        <label for="graduationMarksheet">Graduation Marksheet:</label>
+        <input type="file" id="graduationMarksheet" name="graduationMarksheet">
+        
+        <label for="certificate">Certificate(s):</label>
+        <input type="file" id="certificate1" name="certificate1">
+        <input type="file" id="certificate2" name="certificate2" style="display: none;">
+        <input type="file" id="certificate3" name="certificate3" style="display: none;">
+        
+        <label for="linkedinLink">LinkedIn Profile:</label>
+        <input type="url" id="linkedinLink" name="linkedinLink" placeholder="Enter your LinkedIn profile URL">
+        
+        <label for="githubLink">GitHub Profile:</label>
+        <input type="url" id="githubLink" name="githubLink" placeholder="Enter your GitHub profile URL">
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth App</title>
+    <style>
+        /* Add some basic styles */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f7f6;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #66c4e9;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar button {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            color: #333;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .navbar button:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .about,
+        .signin,
+        .signup {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        #popup-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Auth App</h1>
+        <nav class="navbar">
+            <button class="navbar-link" id="home-button">Home</button>
+            <button class="navbar-link" id="about-button">About</button>
+            <button class="navbar-link" id="signin-button">Sign In</button>
+            <button class="navbar-link" id="signup-button">Sign Up</button>
+        </nav>
+
+        <div id="home-section" class="about active">
+            <section class="about-text">
+                <p>
+                    Welcome to Auth App, your go-to solution for secure and seamless authentication. At Auth App, we prioritize your online security and ease of access, ensuring that your data remains safe while providing a user-friendly experience.
+                </p>
+                <p>
+                    Whether you are here to create a new account, log in to your existing account, or simply explore our features, Auth App has everything you need to manage your authentication needs efficiently. Our platform offers:
+                </p>
+                <ul>
+                    <li><strong>Simple Sign-Up:</strong> Quickly create an account with a few easy steps.</li>
+                    <li><strong>Secure Sign-In:</strong> Use your email and password or sign in with Google for fast and secure access.</li>
+                    <li><strong>Profile Management:</strong> Easily upload and manage your profile picture and personal details.</li>
+                </ul>
+                <p>
+                    Our goal is to provide a secure and intuitive authentication process, making your online experience as smooth as possible. Feel free to navigate through the options above to get started.
+                </p>
+            </section>
+        </div>
+
+        <div id="about-section" class="about">
+            <section class="about-text">
+                <p>
+                    Auth App is a cutting-edge authentication platform designed to provide users with a seamless and secure experience. Our team of experts has crafted a solution that prioritizes both security and usability, ensuring that your online interactions are protected and efficient.
+                </p>
+                <p>
+                    At Auth App, we believe that authentication should be a breeze, not a burden. That's why we've developed a platform that streamlines the process, making it easy for you to access your accounts and manage your online presence.
+                </p>
+                <p>
+                    Our mission is to empower users with a secure and intuitive authentication solution, enabling them to focus on what matters most – their online activities.
+                </p>
+            </section>
+        </div>
+
+        <div id="signin-section" class="signin">
+            <form id="signin-form">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <label for="profile-picture">Profile Picture:</label>
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
+                </div>
+                <button type="submit">SIGN IN</button>
+                <button type="button" id="google-signin-btn">CONTINUE WITH GOOGLE</button>
+            </form>
+        </div>
+
+        <div id="popup-message">
+          <p>Congratulation Sign in successful!</p>
+      </div>
+        <div id="signup-section" class="signup">
+            <form>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div>
+                    <label for="profile-picture">Profile Picture:</label>
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
+                </div>
+                <button type="submit">SIGN UP</button>
+                <button type="button" id="google-signup-btn">CONTINUE WITH GOOGLE</button>
+            </form>
+        </div>
+
+        <div id="popup-message">
+            <p>Congratulation Sign in successful!</p>
+        </div>
+
+        <script>
+          // Add event listeners to the navbar buttons
+          document.getElementById('home-button').addEventListener('click', () => {
+              document.getElementById('home-section').classList.add('active');
+              document.getElementById('about-section').classList.remove('active');
+              document.getElementById('signin-section').classList.remove('active');
+              document.getElementById('signup-section').classList.remove('active');
+          });
+      
+          document.getElementById('about-button').addEventListener('click', () => {
+              document.getElementById('home-section').classList.remove('active');
+              document.getElementById('about-section').classList.add('active');
+              document.getElementById('signin-section').classList.remove('active');
+              document.getElementById('signup-section').classList.remove('active');
+          });
+      
+          document.getElementById('signin-button').addEventListener('click', () => {
+              document.getElementById('home-section').classList.remove('active');
+              document.getElementById('about-section').classList.remove('active');
+              document.getElementById('signin-section').classList.add('active');
+              document.getElementById('signup-section').classList.remove('active');
+          });
+      
+          document.getElementById('signup-button').addEventListener('click', () => {
+              document.getElementById('home-section').classList.remove('active');
+              document.getElementById('about-section').classList.remove('active');
+              document.getElementById('signin-section').classList.remove('active');
+              document.getElementById('signup-section').classList.add('active');
+          });
+      
+          // Add an event listener to the signin form submission
+          document.getElementById('signin-form').addEventListener('submit', (e) => {
+              e.preventDefault(); // Prevent the default form submission behavior
+      
+              // Check if all mandatory fields are filled
+              const email = document.getElementById('email').value;
+              const password = document.getElementById('password').value;
+              if (email && password) {
+                  // Display the pop-up message
+                  document.getElementById('popup-message').style.display = 'block';
+                  setTimeout(() => {
+                      document.getElementById('popup-message').style.display = 'none';
+                      // Redirect to the next HTML page
+                      window.location.href = 'next_page.html';
+                  }, 3000); // Hide the message after 3 seconds
+              } else {
+                  alert('Please fill all mandatory fields!');
+              }
+          });
+      </script>
+      
+    </div>
+</body>
+</html>
